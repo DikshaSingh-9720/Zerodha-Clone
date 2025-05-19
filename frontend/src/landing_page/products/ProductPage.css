@@ -1,0 +1,263 @@
+/* Section Layout */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .col-lg-6, .col-sm-12 {
+    flex: 1;
+  }
+  
+  img {
+    width: 80%;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Left and Right Sections */
+  .product-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 30px;
+  }
+  
+  .product-section img {
+    max-width: 100%;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .product-section h2 {
+    font-size: 2rem;
+    color: #333;
+    padding: 10px;
+    margin-bottom: 20px;
+    text-align: start;
+  }
+  
+  .product-section p {
+    font-size: 1.5rem;
+    max-width: 400px;
+    padding: 10px;
+    color: #666;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .product-section a {
+    color: #007bff;
+    margin-right: 20px;
+  }
+  
+  .product-section a i {
+    margin-left: 5px;
+  }
+/*   
+  .product-section .app-links img {
+    margin-right: 15px;
+  }
+  
+  .product-section .app-links a {
+    margin-right: 15px;
+  }
+  
+  .product-section .app-links {
+    margin-top: 20px;
+  } */
+  
+  .product-section .buttons {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .product-section .buttons a {
+    background-color: #387ed1;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: center;
+    flex: 1;
+    text-decoration: none;
+  }
+  
+  .product-section .buttons a:hover {
+    background-color: #255a8b;
+  }
+  
+  .product-section .buttons a:active {
+    background-color: #1b4b6e;
+  }
+  
+/* @media (max-width: 768px) {
+  .product-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 0 15px;
+    text-align: center;
+  }
+
+  .product-section img {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+
+  .product-section h2 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .product-section p {
+    font-size: 1.2rem;
+    padding: 0 10px;
+    max-width: none;
+    text-align: center;
+  }
+
+  .product-section .buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-section .buttons a {
+    width: 80%;
+    margin-bottom: 10px;
+  }
+} */
+
+.product-image {
+  flex: 1;
+}
+
+.product-content {
+  flex: 1;
+}
+
+/* ✅ Force image first on mobile */
+@media (max-width: 768px) {
+  .product-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .product-section.reverse-on-mobile {
+    flex-direction: column-reverse; /* 🔁 flip order: image first */
+  }
+
+  .product-image img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .product-content h2 {
+    font-size: 1.8rem;
+  }
+
+  .product-content p {
+    font-size: 1.2rem;
+    padding: 0 10px;
+  }
+
+  .product-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .product-buttons a {
+    width: 80%;
+  }
+}
+
+
+.universe-section {
+  background-color: #f9f9f9;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.universe-section h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.universe-section p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 40px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.universe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.universe-item {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.universe-item:hover {
+  transform: translateY(-5px);
+}
+
+.universe-item img {
+  max-width: 100px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.universe-item p {
+  font-size: 0.95rem;
+  color: #444;
+  padding: 0 10px;
+}
+
+.universe-section button {
+  background-color: #387ed1;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.universe-section button:hover {
+  background-color: #255a8b;
+}
+
+@media (max-width: 768px) {
+  .universe-section h2 {
+    font-size: 1.6rem;
+  }
+
+  .universe-section p {
+    font-size: 0.95rem;
+  }
+
+  .universe-section button {
+    width: 80%;
+  }
+}

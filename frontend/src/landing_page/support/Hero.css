@@ -1,0 +1,94 @@
+/* Hero.css */
+#hero-support {
+    background-color: #4799e6;
+    color: #f1f1f1;
+    padding: 3rem 0;
+  }
+  
+  #hero-support-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 2rem;
+    border-bottom: 1px solid #444;
+  }
+  
+  #hero-support-wrapper h4 {
+    font-weight: 600;
+    font-size: 1.8rem;
+  }
+  
+  #hero-support-wrapper a {
+    color: #81c9fa;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  .hero-support-content {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+  
+  .hero-support-content .left,
+  .hero-support-content .right {
+    padding: 1rem;
+  }
+  
+  .left h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .left input {
+    width: 100%;
+    max-width: 500px;
+    padding: 1rem;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 1rem;
+  }
+  
+  .left a {
+    display: inline-block;
+    margin: 0.5rem 1rem 0.5rem 0;
+    font-size: 0.95rem;
+    color: #b3d9ff;
+    text-decoration: underline;
+  }
+  
+  .right h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .right ol {
+    padding-left: 1.2rem;
+  }
+  
+  .right li {
+    margin-bottom: 0.75rem;
+  }
+  
+  .right a {
+    color: #e2f1ff;
+    text-decoration: underline;
+    font-size: 1rem;
+  }
+  
+  /* Responsive */
+  @media (min-width: 768px) {
+    .hero-support-content {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  
+    .left, .right {
+      flex: 1;
+    }
+  }
+  
