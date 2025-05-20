@@ -25,13 +25,24 @@ const cors = require("cors");
 app.use(bodyParser.json());
 
 
-const corsOptions = {
-  origin:'*',
-  credentials: true
-};
+const allowedOrigins = [
+  "https://zerodha-clone-kappa-ivory.vercel.app", // production
+  "https://zerodha-clone-1107e3alk-diksha-singhs-projects-9fa08d3f.vercel.app", // preview
+  "https://zerodha-clone-git-main-diksha-singhs-projects-9fa08d3f.vercel.app"
+];
 
-app.use(cors(corsOptions));
-
+app.use(
+  cors({
+    origin: function (origin, callback) {
+  if (!origin || allowedOrigins.includes(origin) || origin.endsWith("vercel.app")) {
+    callback(null, true);
+  } else {
+    callback(new Error("Not allowed by CORS"));
+  }
+},
+    credentials: true,
+  })
+);
 
 app.use(cookieParser());
 app.use(express.json());
