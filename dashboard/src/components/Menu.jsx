@@ -30,7 +30,7 @@ export const Menu = () => {
     setIsLoggedIn(false);
     toast.success("Logged out successfully!");
    setTimeout(() => {
-    window.location.href = "https://zerodha-clone-kappa-ivory.vercel.app/login";
+    window.location.href = "/login";
   }, 1000); // 1-second delay
   }
 
