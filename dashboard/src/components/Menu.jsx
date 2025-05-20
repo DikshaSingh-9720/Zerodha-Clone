@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import "./Menu.css";
 
@@ -10,6 +11,8 @@ export const Menu = () => {
   const [selectedMenu, setSelectedMenu] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleMenuClick = (index) => {
     setSelectedMenu(index);
@@ -30,7 +33,7 @@ export const Menu = () => {
     setIsLoggedIn(false);
     toast.success("Logged out successfully!");
    setTimeout(() => {
-    window.location.href = "/login";
+    navigate("/");
   }, 1000); // 1-second delay
   }
 
