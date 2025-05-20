@@ -11,6 +11,7 @@ import NotFound from "./landing_page/NotFound.jsx";
 import Navbar from "../src/landing_page/Navbar.jsx";
 import Footer from "../src/landing_page/Footer.jsx";
 import HomePage from "../src/landing_page/home/HomePage.jsx";
+import Dashboard from "/ZERODHA CLONE/dashboard/src/components/Dashboard.jsx"
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/product" element={<ProductPage />} />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/support" element={<SupportPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
