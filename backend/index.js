@@ -26,6 +26,7 @@ app.use(bodyParser.json());
 
 
 const allowedOrigins = [
+  "http://localhost:5174",
   "https://zerodha-clone-kappa-ivory.vercel.app", // production
   "https://zerodha-clone-1107e3alk-diksha-singhs-projects-9fa08d3f.vercel.app", // preview
   "https://zerodha-clone-git-main-diksha-singhs-projects-9fa08d3f.vercel.app"
