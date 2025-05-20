@@ -3,15 +3,13 @@ const jwt = require("jsonwebtoken");
 
 const express = require("express");
 const mongoose = require("mongoose");
-const bodyParser = require('body-parser'); 
+const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 
 const { HoldingsModel } = require("./models/HoldingsModel");
 const { PositionsModel } = require("./models/PositionsModel");
 const { OrdersModel } = require("./models/OrdersModel");
-const {UsersModel} = require("./models/UsersModel");
-
-
+const { UsersModel } = require("./models/UsersModel");
 
 const bcrypt = require("bcrypt");
 
@@ -24,25 +22,24 @@ const cors = require("cors");
 
 app.use(bodyParser.json());
 
-
 const allowedOrigins = [
   "https://zerodha-clone-kappa-ivory.vercel.app",
-  "https://zerodha-clone-1107e3alk-diksha-singhs-projects-9fa08d3f.vercel.app"
+  "https://zerodha-clone-1107e3alk-diksha-singhs-projects-9fa08d3f.vercel.app",
 ];
 
 app.use(
   cors({
     origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
+      if (!origin || origin.includes("vercel.app")) {
         callback(null, true);
       } else {
         callback(new Error("Not allowed by CORS"));
       }
     },
+
     credentials: true,
   })
 );
-
 
 app.use(cookieParser());
 app.use(express.json());
@@ -175,7 +172,6 @@ app.use(express.json());
 //       res.send("Done!");
 // })
 
-
 // app.get("/addPositions", async (req, res) => {
 //   let tempPositions = [
 //     {
@@ -217,25 +213,28 @@ app.use(express.json());
 //   res.send("Done!");
 // });
 
-app.post('/signup',async (req,res,next) =>{
+app.post("/signup", async (req, res, next) => {
   try {
     const { email, password, username, createdAt } = req.body;
-    
+
     const existingUser = await UsersModel.findOne({ email });
 
     if (existingUser) {
       return res.json({ message: "User already exists" });
     }
 
-    const userCreated = await UsersModel.create({ email, password, username, createdAt });
-    
-    res
-    .status(201)
-    .json({
+    const userCreated = await UsersModel.create({
+      email,
+      password,
+      username,
+      createdAt,
+    });
+
+    res.status(201).json({
       status: true, // ✅ add this line
       message: "User signed in successfully",
       token: await userCreated.generateToken(),
-      userId: userCreated._id.toString()
+      userId: userCreated._id.toString(),
     });
     next();
   } catch (error) {
@@ -243,103 +242,98 @@ app.post('/signup',async (req,res,next) =>{
   }
 });
 
-app.post("/login",async (req,res,next) => {
+app.post("/login", async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    if(!email || !password ){
-      return res.json({message:'All fields are required'})
+    if (!email || !password) {
+      return res.json({ message: "All fields are required" });
     }
     const userExist = await UsersModel.findOne({ email });
 
-    if(!userExist){
-      return res.json({message:'Invalid credentials' }) 
+    if (!userExist) {
+      return res.json({ message: "Invalid credentials" });
     }
 
     const user = await userExist.comparePassword(password);
 
     if (user) {
-  res
-    .status(201)
-    .json({
-      status: true, // ✅ add this line
-      message: "User logged in successfully",
-      token: await userExist.generateToken(),
-      userId: userExist._id.toString()
-    });
-} else {
-  res.status(401).json({ status: false, message: "Invalid email or password" });
-}
-     
+      res.status(201).json({
+        status: true, // ✅ add this line
+        message: "User logged in successfully",
+        token: await userExist.generateToken(),
+        userId: userExist._id.toString(),
+      });
+    } else {
+      res
+        .status(401)
+        .json({ status: false, message: "Invalid email or password" });
+    }
   } catch (error) {
     console.error(error);
   }
 });
 
-app.post("/",(req,res)=>{
-  const token = req.cookies.token
+app.post("/", (req, res) => {
+  const token = req.cookies.token;
   if (!token) {
-    return res.json({ status: false })
+    return res.json({ status: false });
   }
   jwt.verify(token, process.env.TOKEN_KEY, async (err, data) => {
     if (err) {
-     return res.json({ status: false })
+      return res.json({ status: false });
     } else {
-      const user = await UsersModel.findById(data._id)
-      if (user) return res.json({ status: true, user: user.username })
-      else return res.json({ status: false })
-    }
-  })
-})
-
-
-app.get('/allHoldings',async(req,res) =>{
-    let allHoldings = await HoldingsModel.find({});
-    res.json(allHoldings);
-});
-
-app.get('/allPositions',async(req,res) =>{
-    let allPositions = await PositionsModel.find({});
-    res.json(allPositions);
-});
-
-app.post("/newOrder" ,async(req,res)=>{
-    let newOrder = new OrdersModel({
-        name:req.body.name,
-        qty: req.body.qty,
-        price: req.body.price,
-        mode: req.body.mode,
-    });
-
-    newOrder.save();
-
-    res.send("Order saved!");
-  }
-);
-
-app.get("/allOrders", async (req, res) => {
-    try {
-      const allOrders = await OrdersModel.find({});
-      res.json(allOrders);
-    } catch (error) {
-      console.error("Error fetching orders:", error);
-      res.status(500).json({ message: "Internal server error" });
-    }
-});
-  
-app.delete("/orders/:id", async (req, res) => {
-    try {
-      await OrdersModel.findByIdAndDelete(req.params.id);
-      res.status(200).json({ message: "Order deleted successfully" });
-    } catch (error) {
-      console.error("Error deleting order:", error);
-      res.status(500).json({ message: "Failed to delete order" });
+      const user = await UsersModel.findById(data._id);
+      if (user) return res.json({ status: true, user: user.username });
+      else return res.json({ status: false });
     }
   });
-  
+});
+
+app.get("/allHoldings", async (req, res) => {
+  let allHoldings = await HoldingsModel.find({});
+  res.json(allHoldings);
+});
+
+app.get("/allPositions", async (req, res) => {
+  let allPositions = await PositionsModel.find({});
+  res.json(allPositions);
+});
+
+app.post("/newOrder", async (req, res) => {
+  let newOrder = new OrdersModel({
+    name: req.body.name,
+    qty: req.body.qty,
+    price: req.body.price,
+    mode: req.body.mode,
+  });
+
+  newOrder.save();
+
+  res.send("Order saved!");
+});
+
+app.get("/allOrders", async (req, res) => {
+  try {
+    const allOrders = await OrdersModel.find({});
+    res.json(allOrders);
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+app.delete("/orders/:id", async (req, res) => {
+  try {
+    await OrdersModel.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: "Order deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting order:", error);
+    res.status(500).json({ message: "Failed to delete order" });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
   mongoose.connect(uri);
   console.log("DB connected");
 });
-
