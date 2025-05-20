@@ -13,7 +13,7 @@ export const Holdings = () => {
   // Fetch holdings data from the backend
   const fetchHoldings = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/allHoldings",{
+      const res = await axios.get("https://zerodha-clone-backend-i5le.onrender.com/allHoldings",{
         headers: {
           "Content-Type": "application/json"
         },
@@ -30,7 +30,7 @@ export const Holdings = () => {
   // Handle the delete action for a stock
   const handleDelete = async (stockId) => {
     try {
-      const response = await axios.delete(`http://localhost:3000/deleteHolding/${stockId}`,{
+      const response = await axios.delete(`https://zerodha-clone-backend-i5le.onrender.com/deleteHolding/${stockId}`,{
         headers: {
           "Content-Type": "application/json"
         },

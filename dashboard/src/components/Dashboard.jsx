@@ -17,7 +17,7 @@ export const Dashboard = () => {
 
   const verifyUser = async () => {
     try {
-      const res = await axios.post("http://localhost:3000/", {}, { withCredentials: true });
+      const res = await axios.post("https://zerodha-clone-backend-i5le.onrender.com/", {}, { withCredentials: true });
       if (!res.data.status) {
         navigate("/login");
       }

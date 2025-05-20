@@ -35,7 +35,7 @@ const handleError = (msg) => {
   console.log("Form submitted");
   try {
     const res = await axios.post(
-      "http://localhost:3000/login",
+      "https://zerodha-clone-backend-i5le.onrender.com/login",
       { email, password },
       { withCredentials: true }
     );

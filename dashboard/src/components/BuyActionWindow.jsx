@@ -14,7 +14,7 @@ export const BuyActionWindow = ({ uid,mode }) => {
 
   const handleBuyClick = async () => {
     try {
-      await axios.post("http://localhost:3000/newOrder", {
+      await axios.post("https://zerodha-clone-backend-i5le.onrender.com/newOrder", {
         name: uid,
         qty: stockQuantity, 
         price: stockPrice, 
@@ -31,7 +31,7 @@ export const BuyActionWindow = ({ uid,mode }) => {
 
   const handleSellClick = async () => {
     try {
-      await axios.post("http://localhost:3000/newOrder", {
+      await axios.post("https://zerodha-clone-backend-i5le.onrender.com/newOrder", {
         name: uid,
         qty: stockQuantity, 
         price: stockPrice, 

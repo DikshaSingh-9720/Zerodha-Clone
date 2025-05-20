@@ -11,8 +11,7 @@ const { PositionsModel } = require("./models/PositionsModel");
 const { OrdersModel } = require("./models/OrdersModel");
 const {UsersModel} = require("./models/UsersModel");
 
-// const signupSchema = require("./validators/AuthValidator");
-// const validate = require("./middlewares/validate-middleware");
+
 
 const bcrypt = require("bcrypt");
 

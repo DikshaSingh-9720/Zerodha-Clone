@@ -10,7 +10,7 @@ export const Orders = () => {
   }, []);
 
   const fetchOrders = () => {
-    axios.get("http://localhost:3000/allOrders")
+    axios.get("https://zerodha-clone-backend-i5le.onrender.com/allOrders")
       .then((res) => {
         setAllOrders(res.data);
       })
@@ -18,7 +18,7 @@ export const Orders = () => {
   };
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:3000/orders/${id}`)
+    axios.delete(`https://zerodha-clone-backend-i5le.onrender.com/orders/${id}`)
       .then(() => {
         setAllOrders((prevOrders) => prevOrders.filter(order => order._id !== id));
       })
