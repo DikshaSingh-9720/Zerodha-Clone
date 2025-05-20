@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 
 app.use(
   cors({
-    origin: ["http://localhost:5173" , 'http://localhost:5174'], // ✅ specific origin, not "*"
+    origin: "https://zerodha-clone-kappa-ivory.vercel.app/", // ✅ specific origin, not "*"
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true, // ✅ allow credentials like cookies
   })
