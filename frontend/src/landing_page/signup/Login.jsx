@@ -44,7 +44,7 @@ const handleError = (msg) => {
       handleSuccess("Login successful!");
       localStorage.setItem("authToken", res.data.token);
       setTimeout(() => {
-        window.location.href = "https://zerodha-clone-kappa-ivory.vercel.app/dashboard";
+        window.location.href = "https://zerodha-clone-tjhm.vercel.app/login";
       }, 1000);
     } else {
       handleError(res.data.message || "Invalid credentials");
