@@ -25,21 +25,8 @@ const cors = require("cors");
 app.use(bodyParser.json());
 
 
-const allowedOrigins = [
-  "http://localhost:5174", // Local React App
-  "https://zerodha-clone-kappa-ivory.vercel.app",
-  "https://zerodha-clone-1107e3alk-diksha-singhs-projects-9fa08d3f.vercel.app",
-  "https://zerodha-clone-git-main-diksha-singhs-projects-9fa08d3f.vercel.app"
-];
-
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+  origin:'*',
   credentials: true
 };
 
