@@ -18,31 +18,33 @@ const uri = process.env.MONGO_URL;
 
 const app = express();
 
-const cors = require("cors");
+const app = express();
 
-app.use(bodyParser.json());
+const cors = require("cors");
 
 const allowedOrigins = [
   "https://zerodha-clone-kappa-ivory.vercel.app",
   "https://zerodha-clone-1107e3alk-diksha-singhs-projects-9fa08d3f.vercel.app",
+  "https://zerodha-clone-git-main-diksha-singhs-projects-9fa08d3f.vercel.app", // new origin
 ];
 
 app.use(
   cors({
     origin: function (origin, callback) {
-      if (!origin || origin.includes("vercel.app")) {
+      if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
         callback(new Error("Not allowed by CORS"));
       }
     },
-
     credentials: true,
   })
 );
 
+// ⬇️ Now apply body parsers AFTER cors
 app.use(cookieParser());
 app.use(express.json());
+app.use(bodyParser.json());
 
 // app.get("/addHoldings",async(req,res)=>{
 //     let tempHoldings = [
