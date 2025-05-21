@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 
 
 const allowedOrigins = [
-  "https://zerodha-clone-tjhm.vercel.app/",
+  "https://zerodha-clone-tjhm.vercel.app",
   "https://zerodha-clone-kappa-ivory.vercel.app"
 ];
 
