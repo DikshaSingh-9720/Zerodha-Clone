@@ -1,6 +1,6 @@
 import React from "react";
 import { useState ,useEffect} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 function Navbar() {
 
   const [isSignedUp, setIsSignedUp] = useState(false);
+  const navigate = useNavigate()
 
   useEffect(() => {
       const token = localStorage.getItem("authToken");
@@ -19,7 +20,7 @@ function Navbar() {
         setIsSignedUp(false);
         toast.success("Signed out successfully!");
        setTimeout(() => {
-        window.location.href = "http://localhost:5173/";
+        navigate("/");
       }, 1000); // 1-second delay
       }
     
