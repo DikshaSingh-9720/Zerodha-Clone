@@ -34,35 +34,42 @@ const Signup = () => {
     });
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const { data } = await axios.post(
-        "https://zerodha-clone-backend-i5le.onrender.com/signup",
-        {
-          ...inputValue,
-        },
-        { withCredentials: true }
-      );
-      // const { success, message } = data;
-      if (data.status) {
-        handleSuccess("User signed up successfully!");
-        setTimeout(() => {
-          navigate("/");
-        }, 1000);
-      } else {
-        handleError(res.data.message || "Invalid credentials");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-    setInputValue({
-      ...inputValue,
-      email: "",
-      password: "",
-      username: "",
-    });
+  e.preventDefault();
 
-  };
+  try {
+    const { data } = await axios.post(
+      `${import.meta.env.VITE_API_URL}/signup`,
+      {
+        ...inputValue,
+      },
+      { withCredentials: true }
+    );
+
+    if (data.status) {
+      handleSuccess("User signed up successfully!");
+
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
+
+    } else {
+      handleError(data.message || "Invalid credentials");
+    }
+
+  } catch (error) {
+    console.log(error);
+
+    handleError(
+      error.response?.data?.message || "Something went wrong"
+    );
+  }
+
+  setInputValue({
+    email: "",
+    password: "",
+    username: "",
+  });
+};
 
   return (
     <div className="signup">

@@ -26,6 +26,7 @@ app.use(bodyParser.json());
 
 
 const allowedOrigins = [
+  "http://localhost:5173",
   "https://zerodha-clone-tjhm.vercel.app",
   "https://zerodha-clone-kappa-ivory.vercel.app"
 ];
@@ -46,6 +47,8 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 
+
+/* run only once*/
 // app.get("/addHoldings",async(req,res)=>{
 //     let tempHoldings = [
 //         {
